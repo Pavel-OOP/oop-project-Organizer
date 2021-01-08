@@ -1,0 +1,13 @@
+createteam TeamRocket
+createmember Viktor
+createmember Pavel
+createboard TeamRocket WIMProject
+ADDMEMBERTOTEAM TeamRocket Viktor
+ADDMEMBERTOTEAM TeamRocket Pavel
+createbug TeamRocket WIMProject CrashingScreen
+My screen is blue. It has a lot of text on it. Some writings in a language I do not speak. Please help.
+I was playing a game.
+Clicked ALT+TAB
+PC crashed to blue screen
+finish
+high critical active Viktor
