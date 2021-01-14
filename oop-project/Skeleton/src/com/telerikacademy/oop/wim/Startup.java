@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class Startup {
     public static void main(String[] args) {
         WIMEngineImpl engine = new WIMEngineImpl();
-        engine.start();
+        engine.testStart();
 
 
     }

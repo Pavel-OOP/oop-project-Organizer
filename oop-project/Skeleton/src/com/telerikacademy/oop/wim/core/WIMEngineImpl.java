@@ -54,7 +54,7 @@ public class WIMEngineImpl implements Engine {
             try {
                 Scanner scanner = new Scanner(f);
                 Scanner user_input = new Scanner(System.in);
-                while (user_input.nextLine().equalsIgnoreCase("")) {
+                while (true) {
                     String commandAsString = scanner.nextLine();
                     System.out.println(GlobalConstants.ANSI_GREEN + commandAsString + GlobalConstants.ANSI_RESET);
                     if (commandAsString.equalsIgnoreCase(TERMINATION_COMMAND)) {
