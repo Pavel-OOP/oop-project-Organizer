@@ -7,7 +7,7 @@ public interface WorkItems {
 
     //added for tests
     String getDescription();
-    String getAssignee();
+    //String getAssignee();
     int getID();
 
 

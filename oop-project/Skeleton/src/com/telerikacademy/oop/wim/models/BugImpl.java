@@ -12,12 +12,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BugImpl extends WorkItemsImpl implements Bug, CommentsInterface, BugStoryPriority {
+public class BugImpl extends Assignee implements Bug, CommentsInterface, BugStoryPriority {
 
     private List<String> stepsToReproduce;
     private Severity severity;
     private BugStatus bugStatus;
-    private Priority priority;
     private List<String> bugComments;
 
     public BugImpl(String title,
@@ -28,9 +27,7 @@ public class BugImpl extends WorkItemsImpl implements Bug, CommentsInterface, Bu
                    BugStatus bugStatus,
                    String assignee) {
 
-        super(title, description, assignee);
-
-        this.priority = priority;
+        super(title, description, assignee, priority);
         this.stepsToReproduce = stepsToReproduce;
         this.severity = severity;
         this.bugStatus = bugStatus;
@@ -39,20 +36,7 @@ public class BugImpl extends WorkItemsImpl implements Bug, CommentsInterface, Bu
         workItemsHistory.add(String.format("Bug created. - %s", LocalDateTime.now().format(formatter)));
     }
 
-    public Priority getPriority() {
-        return priority;
-    }
 
-    public void setPriority(Priority priority, String pass) {
-        if (pass.equals("AlongPassWordWithMultiple#4!2#F)E#)M#W)FICPI#)")) {
-            String previous = String.valueOf(this.priority);
-            this.priority = priority;
-            workItemsHistory.add(String.format("Bug priority was changed from %s to %s. - %s",
-                    previous, priority, LocalDateTime.now().format(formatter)));
-        } else {
-            throw new IllegalArgumentException(ErrorMessages.INCORRECT_PASS_NOT_ALLOWED);
-        }
-    }
 
     public BugStatus getBugStatus() {
         return bugStatus;

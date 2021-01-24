@@ -3,8 +3,10 @@ package com.telerikacademy.oop.wim.commands.FilterAndSortCommands;
 import com.telerikacademy.oop.wim.commands.Messages.ErrorMessages;
 import com.telerikacademy.oop.wim.commands.contracts.Command;
 import com.telerikacademy.oop.wim.core.WIMRepositoryImpl;
+import com.telerikacademy.oop.wim.models.Assignee;
 import com.telerikacademy.oop.wim.models.ValidationHelper;
 import com.telerikacademy.oop.wim.models.WorkItemsImpl;
+import com.telerikacademy.oop.wim.models.contracts.Assignable;
 
 import java.util.*;
 
@@ -56,7 +58,7 @@ public class SortByPriority implements Command {
         List<WorkItemsImpl> workItemsSorted = new ArrayList<>();
         wimRepository.getMembers().get(memberName).getBugAndStoriesAsWorkItemImplList()
                 .stream()
-                .sorted(Comparator.comparing(WorkItemsImpl::getPriority))
+                .sorted(Comparator.comparing(Assignable::getPriority))
                 .forEach(workItemsSorted::add);
         if (upOrDown.equalsIgnoreCase("down")) {
             workItemsSorted
@@ -76,10 +78,10 @@ public class SortByPriority implements Command {
 
     private String FilterWorkItemsFromBoard(String teamName, String boardName, String upOrDown) {
         StringBuilder stringBuilder = new StringBuilder();
-        List<WorkItemsImpl> workItemsSorted = new ArrayList<>();
+        List<Assignee> workItemsSorted = new ArrayList<>();
         wimRepository.getTeams().get(teamName).getAllBoards().get(boardName).getAllWorkItemsInOneWorkItemsImplList()
                 .stream()
-                .sorted(Comparator.comparing(WorkItemsImpl::getPriority))
+                .sorted(Comparator.comparing(Assignee::getPriority))
                 .forEach(workItemsSorted::add);
         if (upOrDown.equalsIgnoreCase("down")) {
             workItemsSorted
@@ -99,16 +101,16 @@ public class SortByPriority implements Command {
 
     private String FilterWorkItemsFromTeam(String teamName, String upOrDown) {
         StringBuilder stringBuilder = new StringBuilder();
-        List<WorkItemsImpl> workItemsSortedByBoards = new ArrayList<>();
-        List<WorkItemsImpl> workItemsSortedAll = new ArrayList<>();
+        List<Assignee> workItemsSortedByBoards = new ArrayList<>();
+        List<Assignee> workItemsSortedAll = new ArrayList<>();
         wimRepository.getTeams().get(teamName).getAllBoards()
                 .forEach((s, board) -> board.getAllWorkItemsInOneWorkItemsImplList()
                         .stream()
-                        .sorted(Comparator.comparing(WorkItemsImpl::getPriority))
+                        .sorted(Comparator.comparing(Assignee::getPriority))
                         .forEach(workItemsSortedByBoards::add));
         workItemsSortedByBoards
                 .stream()
-                .sorted(Comparator.comparing(WorkItemsImpl::getPriority))
+                .sorted(Comparator.comparing(Assignee::getPriority))
                 .forEach(workItemsSortedAll::add);
 
         if (upOrDown.equalsIgnoreCase("down")) {

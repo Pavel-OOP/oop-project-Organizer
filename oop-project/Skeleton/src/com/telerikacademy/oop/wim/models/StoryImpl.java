@@ -1,6 +1,7 @@
 package com.telerikacademy.oop.wim.models;
 
 import com.telerikacademy.oop.wim.commands.Messages.ErrorMessages;
+import com.telerikacademy.oop.wim.models.contracts.Assignable;
 import com.telerikacademy.oop.wim.models.contracts.BugStoryPriority;
 import com.telerikacademy.oop.wim.models.contracts.CommentsInterface;
 import com.telerikacademy.oop.wim.models.contracts.Story;
@@ -12,9 +13,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StoryImpl extends WorkItemsImpl implements Story, CommentsInterface, BugStoryPriority {
+public class StoryImpl extends Assignee implements Story, CommentsInterface, BugStoryPriority, Assignable {
 
-    private Priority priority;
     private Size size;
     private StoryStatus storyStatus;
     private List<String> storyComments;
@@ -26,18 +26,13 @@ public class StoryImpl extends WorkItemsImpl implements Story, CommentsInterface
                      StoryStatus storyStatus,
                      String assignee) {
 
-        super(title, description, assignee);
+        super(title, description, assignee, priority);
 
         this.storyStatus = storyStatus;
         this.size = size;
-        this.priority = priority;
         storyComments = new ArrayList<>();
         super.workItemsHistory = new ArrayList<>();
         workItemsHistory.add(String.format("Story created. - %s", LocalDateTime.now().format(formatter)));
-    }
-
-    public Priority getPriority() {
-        return priority;
     }
 
     public Size getSize() {
@@ -46,17 +41,6 @@ public class StoryImpl extends WorkItemsImpl implements Story, CommentsInterface
 
     public StoryStatus getStoryStatus() {
         return storyStatus;
-    }
-
-    public void setPriority(Priority priority, String pass) {
-        if (pass.equals("AlongPassWordWithMultiple$(&@#(T##RUEWEJF")) {
-        String previous = String.valueOf(this.priority);
-        this.priority = priority;
-        workItemsHistory.add(String.format("Story priority was changed from %s to %s. - %s",
-                previous, priority, LocalDateTime.now().format(formatter)));
-    } else {
-            throw new IllegalArgumentException(ErrorMessages.INCORRECT_PASS_NOT_ALLOWED);
-        }
     }
 
     public void setSize(Size size, String pass) {

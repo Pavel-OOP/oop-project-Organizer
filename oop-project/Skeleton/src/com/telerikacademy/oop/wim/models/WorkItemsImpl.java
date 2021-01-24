@@ -2,6 +2,7 @@ package com.telerikacademy.oop.wim.models;
 
 import com.telerikacademy.oop.wim.commands.Messages.ErrorMessages;
 import com.telerikacademy.oop.wim.core.WIMRepositoryImpl;
+import com.telerikacademy.oop.wim.models.contracts.Assignable;
 import com.telerikacademy.oop.wim.models.contracts.WorkItems;
 import com.telerikacademy.oop.wim.models.enums.Priority;
 import com.telerikacademy.oop.wim.models.enums.Severity;
@@ -20,11 +21,11 @@ public abstract class WorkItemsImpl implements WorkItems {
     private final int ID;
     private String title;
     private String description;
-    private String assignee; // member
+    //private String assignee; // member
     private String comments;
-    private Priority priority;
-    private Severity severity;
-    private Size size;
+    //private Priority priority;
+    //private Severity severity;
+    //private Size size;
     protected List<String> workItemsHistory;
     protected DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
@@ -35,13 +36,13 @@ public abstract class WorkItemsImpl implements WorkItems {
         workItemsHistory = new ArrayList<>();
     }
 
-    public WorkItemsImpl(String title, String description, String assignee) {
+    /*public WorkItemsImpl(String title, String description, String assignee) {
         ID = ++count;
         setTitle(title);
         setDescription(description);
         setAssignee(assignee);
         workItemsHistory = new ArrayList<>();
-    }
+    }*/
 
     public int getID() {
         return this.ID;
@@ -55,20 +56,20 @@ public abstract class WorkItemsImpl implements WorkItems {
         return description;
     }
 
-    public String getAssignee() {
-        return assignee;
-    }
+    //public String getAssignee() {
+    //    return assignee;
+    //}
 
 
     public String getComments() {
         return comments;
     }
 
-    public Priority getPriority(){ return priority;}
+    //public abstract Priority getPriority();
 
-    public Severity getSeverity(){ return severity;}
+    //public Severity getSeverity(){ return severity;}
 
-    public Size getSize() {return size;}
+    //public Size getSize() {return size;}
 
     private void setTitle(String title) {
         ValidationHelper.checkNull("Title", title);
@@ -84,9 +85,9 @@ public abstract class WorkItemsImpl implements WorkItems {
         this.description = description;
     }
 
-    public void setAssignee(String assignee) {
-        this.assignee = assignee;
-    }
+    //public void setAssignee(String assignee) {
+    //    this.assignee = assignee;
+    //}
 
 
     private void setComments(String comments) {

@@ -3,8 +3,10 @@ package com.telerikacademy.oop.wim.commands.FilterAndSortCommands;
 import com.telerikacademy.oop.wim.commands.Messages.ErrorMessages;
 import com.telerikacademy.oop.wim.commands.contracts.Command;
 import com.telerikacademy.oop.wim.core.WIMRepositoryImpl;
+import com.telerikacademy.oop.wim.models.StoryImpl;
 import com.telerikacademy.oop.wim.models.ValidationHelper;
 import com.telerikacademy.oop.wim.models.WorkItemsImpl;
+import com.telerikacademy.oop.wim.models.contracts.Story;
 
 import java.util.*;
 
@@ -52,10 +54,10 @@ public class SortBySize implements Command {
 
     private String FilterWorkItemsFromMember(String memberName, String upOrDown) {
         StringBuilder stringBuilder = new StringBuilder();
-        List<WorkItemsImpl> workItemsSorted = new ArrayList<>();
-        wimRepository.getMembers().get(memberName).getBugAndStoriesAsWorkItemImplList()
+        List<StoryImpl> workItemsSorted = new ArrayList<>();
+        wimRepository.getMembers().get(memberName).getStoryAsWorkItemImplList()
                 .stream()
-                .sorted(Comparator.comparing(WorkItemsImpl::getSize))
+                .sorted(Comparator.comparing(StoryImpl::getSize))
                 .forEach(workItemsSorted::add);
         if (upOrDown.equalsIgnoreCase("down")) {
             workItemsSorted
@@ -78,10 +80,10 @@ public class SortBySize implements Command {
 
     private String FilterWorkItemsFromBoard(String teamName, String boardName, String upOrDown) {
         StringBuilder stringBuilder = new StringBuilder();
-        List<WorkItemsImpl> workItemsSorted = new ArrayList<>();
-        wimRepository.getTeams().get(teamName).getAllBoards().get(boardName).getAllWorkItemsInOneWorkItemsImplList()
+        List<StoryImpl> workItemsSorted = new ArrayList<>();
+        wimRepository.getTeams().get(teamName).getAllBoards().get(boardName).getAllWorkItemsInOneStoryImplList()
                 .stream()
-                .sorted(Comparator.comparing(WorkItemsImpl::getSize))
+                .sorted(Comparator.comparing(StoryImpl::getSize))
                 .forEach(workItemsSorted::add);
         if (upOrDown.equalsIgnoreCase("down")) {
             workItemsSorted
@@ -101,16 +103,16 @@ public class SortBySize implements Command {
 
     private String FilterWorkItemsFromTeam(String teamName, String upOrDown) {
         StringBuilder stringBuilder = new StringBuilder();
-        List<WorkItemsImpl> workItemsSortedByBoards = new ArrayList<>();
-        List<WorkItemsImpl> workItemsSortedAll = new ArrayList<>();
+        List<StoryImpl> workItemsSortedByBoards = new ArrayList<>();
+        List<StoryImpl> workItemsSortedAll = new ArrayList<>();
         wimRepository.getTeams().get(teamName).getAllBoards()
-                .forEach((s, board) -> board.getAllWorkItemsInOneWorkItemsImplList()
+                .forEach((s, board) -> board.getAllWorkItemsInOneStoryImplList()
                         .stream()
-                        .sorted(Comparator.comparing(WorkItemsImpl::getSize))
+                        .sorted(Comparator.comparing(StoryImpl::getSize))
                         .forEach(workItemsSortedByBoards::add));
         workItemsSortedByBoards
                 .stream()
-                .sorted(Comparator.comparing(WorkItemsImpl::getSize))
+                .sorted(Comparator.comparing(StoryImpl::getSize))
                 .forEach(workItemsSortedAll::add);
 
         if (upOrDown.equalsIgnoreCase("down")) {

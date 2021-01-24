@@ -161,11 +161,17 @@ public class BoardImpl extends BoardMemberBaseImpl implements Board {
         return stringBuilder.toString();
     }
 
-    public List<WorkItemsImpl> getAllWorkItemsInOneWorkItemsImplList(){
-        List<WorkItemsImpl> workItems = new ArrayList<>();
+    public List<Assignee> getAllWorkItemsInOneWorkItemsImplList(){
+        List<Assignee> workItems = new ArrayList<>();
         workItems.addAll(getAllStories());
         workItems.addAll(getAllBugs());
-        workItems.addAll(getAllFeedbacks());
         return workItems;
+    }
+    public List<BugImpl> getAllWorkItemsInOneBugImplList(){
+        return new ArrayList<>(getAllBugs());
+    }
+
+    public List<StoryImpl> getAllWorkItemsInOneStoryImplList(){
+        return new ArrayList<>(getAllStories());
     }
 }

@@ -41,11 +41,19 @@ public class MemberImpl extends BoardMemberBaseImpl implements Member {
 
     }
 
-    public List<WorkItemsImpl> getBugAndStoriesAsWorkItemImplList(){
-        List<WorkItemsImpl> bugAndStoriesList = new ArrayList<>();
+    public List<Assignee> getBugAndStoriesAsWorkItemImplList(){
+        List<Assignee> bugAndStoriesList = new ArrayList<>();
         bugAndStoriesList.addAll(getStories());
         bugAndStoriesList.addAll(getBugs());
         return bugAndStoriesList;
+    }
+
+    public List<BugImpl> getBugAsWorkItemImplList(){
+        return new ArrayList<>(getBugs());
+    }
+
+    public List<StoryImpl> getStoryAsWorkItemImplList(){
+        return new ArrayList<>(getStories());
     }
 
 }

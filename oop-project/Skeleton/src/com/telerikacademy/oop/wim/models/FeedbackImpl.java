@@ -4,6 +4,7 @@ import com.telerikacademy.oop.wim.commands.Messages.ErrorMessages;
 import com.telerikacademy.oop.wim.models.contracts.CommentsInterface;
 import com.telerikacademy.oop.wim.models.contracts.Feedback;
 import com.telerikacademy.oop.wim.models.enums.FeedbackStatus;
+import com.telerikacademy.oop.wim.models.enums.Priority;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -105,4 +106,5 @@ public class FeedbackImpl extends WorkItemsImpl implements Feedback, CommentsInt
         this.feedbackComments.forEach(comment -> stringBuilder.append(comment).append(String.format("%n")));
         return stringBuilder.toString();
     }
+
 }

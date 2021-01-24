@@ -3,8 +3,10 @@ package com.telerikacademy.oop.wim.commands.FilterAndSortCommands;
 import com.telerikacademy.oop.wim.commands.Messages.ErrorMessages;
 import com.telerikacademy.oop.wim.commands.contracts.Command;
 import com.telerikacademy.oop.wim.core.WIMRepositoryImpl;
+import com.telerikacademy.oop.wim.models.BugImpl;
 import com.telerikacademy.oop.wim.models.ValidationHelper;
 import com.telerikacademy.oop.wim.models.WorkItemsImpl;
+import com.telerikacademy.oop.wim.models.contracts.Bug;
 
 import java.util.*;
 
@@ -54,10 +56,10 @@ public class SortBySeverity implements Command {
     private String FilterWorkItemsFromMember(String memberName, String upOrDown) {
         //checks go here.
         StringBuilder stringBuilder = new StringBuilder();
-        List<WorkItemsImpl> workItemsSorted = new ArrayList<>();
-        wimRepository.getMembers().get(memberName).getBugAndStoriesAsWorkItemImplList()
+        List<BugImpl> workItemsSorted = new ArrayList<>();
+        wimRepository.getMembers().get(memberName).getBugAsWorkItemImplList()
                 .stream()
-                .sorted(Comparator.comparing(WorkItemsImpl::getSeverity))
+                .sorted(Comparator.comparing(BugImpl::getSeverity))
                 .forEach(workItemsSorted::add);
         if (upOrDown.equalsIgnoreCase("down")) {
             workItemsSorted
@@ -78,10 +80,10 @@ public class SortBySeverity implements Command {
     private String FilterWorkItemsFromBoard(String teamName, String boardName, String upOrDown) {
         //checks go here.
         StringBuilder stringBuilder = new StringBuilder();
-        List<WorkItemsImpl> workItemsSorted = new ArrayList<>();
-        wimRepository.getTeams().get(teamName).getAllBoards().get(boardName).getAllWorkItemsInOneWorkItemsImplList()
+        List<BugImpl> workItemsSorted = new ArrayList<>();
+        wimRepository.getTeams().get(teamName).getAllBoards().get(boardName).getAllWorkItemsInOneBugImplList()
                 .stream()
-                .sorted(Comparator.comparing(WorkItemsImpl::getSeverity))
+                .sorted(Comparator.comparing(BugImpl::getSeverity))
                 .forEach(workItemsSorted::add);
         if (upOrDown.equalsIgnoreCase("down")) {
             workItemsSorted
@@ -99,16 +101,16 @@ public class SortBySeverity implements Command {
     private String FilterWorkItemsFromTeam(String teamName, String upOrDown) {
         //checks go here.
         StringBuilder stringBuilder = new StringBuilder();
-        List<WorkItemsImpl> workItemsSortedByBoards = new ArrayList<>();
-        List<WorkItemsImpl> workItemsSortedAll = new ArrayList<>();
+        List<BugImpl> workItemsSortedByBoards = new ArrayList<>();
+        List<BugImpl> workItemsSortedAll = new ArrayList<>();
         wimRepository.getTeams().get(teamName).getAllBoards()
-                .forEach((s, board) -> board.getAllWorkItemsInOneWorkItemsImplList()
+                .forEach((s, board) -> board.getAllWorkItemsInOneBugImplList()
                         .stream()
-                        .sorted(Comparator.comparing(WorkItemsImpl::getSeverity))
+                        .sorted(Comparator.comparing(BugImpl::getSeverity))
                         .forEach(workItemsSortedByBoards::add));
         workItemsSortedByBoards
                 .stream()
-                .sorted(Comparator.comparing(WorkItemsImpl::getSeverity))
+                .sorted(Comparator.comparing(BugImpl::getSeverity))
                 .forEach(workItemsSortedAll::add);
 
         if (upOrDown.equalsIgnoreCase("down")) {
