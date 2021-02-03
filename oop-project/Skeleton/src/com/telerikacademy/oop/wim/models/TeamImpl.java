@@ -46,22 +46,22 @@ public class TeamImpl implements Team {
             throw new IllegalArgumentException(ErrorMessages.BOARD_ALREADY_EXISTS);
         }
         this.boards.put(boardName, board);
-        activityHistoryTeam.add(String.format("Board with name [ %s ] added. - %s",boardName,LocalDateTime.now().format(formatter)));
+        activityHistoryTeam.add(String.format("Board with name [ %s ] added. - %s", boardName, LocalDateTime.now().format(formatter)));
     }
 
     public void addBugToBoard (String BoardName, BugImpl bug){
         boards.get(BoardName).addBug(bug);
-        activityHistoryTeam.add(String.format("Bug with name [ %s ] added. - %s",bug.getTitle(),LocalDateTime.now().format(formatter)));
+        activityHistoryTeam.add(String.format("Bug with name [ %s ] added. - %s", bug.getTitle(), LocalDateTime.now().format(formatter)));
     }
 
     public void addStoryToBoard(String BoardName, StoryImpl story){
         boards.get(BoardName).addStory(story);
-        activityHistoryTeam.add(String.format("Story with name [ %s ] added. - %s",story.getTitle(),LocalDateTime.now().format(formatter)));
+        activityHistoryTeam.add(String.format("Story with name [ %s ] added. - %s", story.getTitle(), LocalDateTime.now().format(formatter)));
     }
 
     public void addFeedbackToBoard(String BoardName, FeedbackImpl feedback){
         boards.get(BoardName).addFeedback(feedback);
-        activityHistoryTeam.add(String.format("Feedback with name [ %s ] added. - %s",feedback.getTitle(),LocalDateTime.now().format(formatter)));
+        activityHistoryTeam.add(String.format("Feedback with name [ %s ] added. - %s", feedback.getTitle(), LocalDateTime.now().format(formatter)));
     }
 
     public void addMemberToTeam(String memberName, MemberImpl member){
@@ -69,8 +69,8 @@ public class TeamImpl implements Team {
             throw new IllegalArgumentException(ErrorMessages.MEMBER_ALREADY_IN_THIS_TEAM);
         }
         this.members.put(memberName, member);
-        activityHistoryTeam.add(String.format("Member with name [ %s ] added to this team. - %s",memberName,LocalDateTime.now().format(formatter)));
-        activityHistoryMember.add(String.format("This member was added to team with name [ %s ]. - %s",this.name,LocalDateTime.now().format(formatter)));
+        activityHistoryTeam.add(String.format("Member with name [ %s ] added to this team. - %s",memberName, LocalDateTime.now().format(formatter)));
+        activityHistoryMember.add(String.format("This member was added to team with name [ %s ]. - %s",this.name, LocalDateTime.now().format(formatter)));
     }
 
     public BoardImpl getBoard(String boardName){
@@ -90,9 +90,9 @@ public class TeamImpl implements Team {
             throw new IllegalArgumentException("Member with this name was not found in this team.");
         }
         activityHistoryTeam.add(String.format("Bug with name [ %s ] was added to member with name [ %s ]. - %s",
-                boards.get(boardName).getBug(title),assignee,LocalDateTime.now().format(formatter)));
+                boards.get(boardName).getBug(title), assignee, LocalDateTime.now().format(formatter)));
         activityHistoryMember.add(String.format("Bug with name [ %s ] was added to member with name [ %s ]. - %s",
-                boards.get(boardName).getBug(title),assignee,LocalDateTime.now().format(formatter)));
+                boards.get(boardName).getBug(title), assignee, LocalDateTime.now().format(formatter)));
     }
 
     public void addStoryToMember(String assignee, String boardName, String title){
@@ -104,9 +104,9 @@ public class TeamImpl implements Team {
             throw new IllegalArgumentException("Member with this name was not found in this team.");
         }
         activityHistoryTeam.add(String.format("Story with name [ %s ] was added to member with name [ %s ]. - %s",
-                boards.get(boardName).getStory(title),assignee,LocalDateTime.now().format(formatter)));
+                boards.get(boardName).getStory(title), assignee, LocalDateTime.now().format(formatter)));
         activityHistoryMember.add(String.format("Story with name [ %s ] was added to member with name [ %s ]. - %s",
-                boards.get(boardName).getStory(title),assignee,LocalDateTime.now().format(formatter)));
+                boards.get(boardName).getStory(title), assignee, LocalDateTime.now().format(formatter)));
     }
 
     public String printTeamHistory(){
