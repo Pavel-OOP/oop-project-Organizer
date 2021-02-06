@@ -29,7 +29,7 @@ public class ListBoardActivity implements Command {
     }
 
     private String ListBoardActivityLog(String teamName, String boardName) {
-        if (teams.get(teamName).getAllBoards().get(boardName).getAllWorkItemsInOneWorkItemsImplList().isEmpty()){
+        if (teams.get(teamName).getAllBoards().get(boardName).getAllAssignablesInOneAssigneeList().isEmpty()){
             return "This board does not contain any work items";
         }
         return teams.get(teamName).getAllBoards().get(boardName).printBoardHistory();

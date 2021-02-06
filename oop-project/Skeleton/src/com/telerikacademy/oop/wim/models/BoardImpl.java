@@ -2,14 +2,11 @@ package com.telerikacademy.oop.wim.models;
 
 import com.telerikacademy.oop.wim.commands.Messages.ErrorMessages;
 import com.telerikacademy.oop.wim.models.contracts.*;
-import com.telerikacademy.oop.wim.models.enums.FeedbackStatus;
-import com.telerikacademy.oop.wim.models.enums.Priority;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class BoardImpl extends BoardMemberBaseImpl implements Board {
 
@@ -17,6 +14,7 @@ public class BoardImpl extends BoardMemberBaseImpl implements Board {
     private List<StoryImpl> stories;
     private List<FeedbackImpl> feedbacks;
     private List<String> activityHistoryBoard;
+    private List<WorkItemsImpl> workItemsList;
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
     public BoardImpl(String name) {
@@ -25,6 +23,7 @@ public class BoardImpl extends BoardMemberBaseImpl implements Board {
         stories = new ArrayList<>();
         feedbacks = new ArrayList<>();
         activityHistoryBoard = new ArrayList<>();
+        workItemsList = new ArrayList<>();
     }
 
     public void addBug(BugImpl bugName){
@@ -32,6 +31,7 @@ public class BoardImpl extends BoardMemberBaseImpl implements Board {
             throw new IllegalArgumentException(ErrorMessages.BUG_ALREADY_EXIST);
         }
         this.bugs.add(bugName);
+        this.workItemsList.add(bugName);
         activityHistoryBoard.add(String.format("Bug with tittle [ %s ] was added. - %s "
                 ,bugName.getTitle(), LocalDateTime.now().format(formatter)));
     }
@@ -41,6 +41,7 @@ public class BoardImpl extends BoardMemberBaseImpl implements Board {
             throw new IllegalArgumentException(ErrorMessages.STORY_ALREADY_EXIST);
         }
         this.stories.add(story);
+        this.workItemsList.add(story);
         activityHistoryBoard.add(String.format("Story with title [ %s ] was added. - %s "
                 ,story.getTitle(), LocalDateTime.now().format(formatter)));
     }
@@ -50,6 +51,7 @@ public class BoardImpl extends BoardMemberBaseImpl implements Board {
             throw new IllegalArgumentException(ErrorMessages.FEEDBACK_ALREADY_EXISTS);
         }
         this.feedbacks.add(feedbackName);
+        this.workItemsList.add(feedbackName);
         activityHistoryBoard.add(String.format("Feedback with title [ %s ] was added. - %s "
                 ,feedbackName.getTitle(), LocalDateTime.now().format(formatter)));
     }
@@ -79,10 +81,6 @@ public class BoardImpl extends BoardMemberBaseImpl implements Board {
             }
         }
         return null;
-    }
-
-    @Override
-    protected void activityHistory() {
     }
 
     @Override
@@ -161,11 +159,15 @@ public class BoardImpl extends BoardMemberBaseImpl implements Board {
         return stringBuilder.toString();
     }
 
-    public List<Assignee> getAllWorkItemsInOneWorkItemsImplList(){
-        List<Assignee> workItems = new ArrayList<>();
-        workItems.addAll(getAllStories());
-        workItems.addAll(getAllBugs());
-        return workItems;
+    public List<WorkItemsImpl> getAllWorkItemsInOneList(){
+        return new ArrayList<>(workItemsList);
+    }
+
+    public List<AssigneeImpl> getAllAssignablesInOneAssigneeList(){
+        List<AssigneeImpl> assignees = new ArrayList<>();
+        assignees.addAll(getAllStories());
+        assignees.addAll(getAllBugs());
+        return assignees;
     }
     public List<BugImpl> getAllWorkItemsInOneBugImplList(){
         return new ArrayList<>(getAllBugs());

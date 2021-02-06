@@ -27,7 +27,7 @@ public class ConfirmationMessages {
 
     public static final String COMMENT_ADDED = "Comment was added successfully!";
 
-    public static final String ASSIGNEE_CHANGED = "Assignee for work item with name [ %s ] was changed to [ %s ].";
+    public static final String ASSIGNEE_CHANGED = "AssigneeImpl for work item with name [ %s ] was changed to [ %s ].";
 
     public static final String WORK_ITEM_REASSIGNED = "Work item successfully reassigned.";
 

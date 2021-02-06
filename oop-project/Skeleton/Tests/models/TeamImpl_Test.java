@@ -38,7 +38,7 @@ public class TeamImpl_Test {
     }
 
     @Test
-    public void checkIf_TeamImpl_adds_board_withSameName(){
+    public void checkIf_TeamImpl_doesnt_add_board_withSameName(){
         //name should be unique
         teamImplTest.addBoard("board1", board);
 

@@ -34,8 +34,8 @@ public class UnassignWorkItemFromMember implements Command {
     }
 
     public String AssignWorkItemToMemberConsole(String teamName, String boardName, String workItemName) {
-        System.out.println(String.format("Work items of type Bug and Story need to have Assignee at all times! %n" +
-                "The system will prompt you to choose new Assignee from the current team."));
+        System.out.println(String.format("Work items of type Bug and Story need to have AssigneeImpl at all times! %n" +
+                "The system will prompt you to choose new AssigneeImpl from the current team."));
         ValidationHelper.checkExistenceTeamAndBoard(teamName, boardName, wimRepository.getTeams());
         if (searchStories(workItemName, teamName, boardName) && searchBugs(workItemName, teamName, boardName)) {
             System.out.println("2 Work Items with this name found. 1 bug and 1 story.");

@@ -2,13 +2,9 @@ package com.telerikacademy.oop.wim.models;
 
 
 import com.telerikacademy.oop.wim.models.contracts.Member;
-import com.telerikacademy.oop.wim.models.contracts.WorkItems;
-import com.telerikacademy.oop.wim.models.enums.Priority;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class MemberImpl extends BoardMemberBaseImpl implements Member {
 
@@ -36,13 +32,8 @@ public class MemberImpl extends BoardMemberBaseImpl implements Member {
        return workItems.get(member);
     }*/
 
-    @Override
-    protected void activityHistory() {
-
-    }
-
-    public List<Assignee> getBugAndStoriesAsWorkItemImplList(){
-        List<Assignee> bugAndStoriesList = new ArrayList<>();
+    public List<AssigneeImpl> getBugAndStoriesAsWorkItemImplList(){
+        List<AssigneeImpl> bugAndStoriesList = new ArrayList<>();
         bugAndStoriesList.addAll(getStories());
         bugAndStoriesList.addAll(getBugs());
         return bugAndStoriesList;

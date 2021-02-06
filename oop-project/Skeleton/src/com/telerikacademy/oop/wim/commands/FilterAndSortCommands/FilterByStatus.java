@@ -4,6 +4,8 @@ import com.telerikacademy.oop.wim.commands.Messages.ErrorMessages;
 import com.telerikacademy.oop.wim.commands.contracts.Command;
 import com.telerikacademy.oop.wim.core.WIMRepositoryImpl;
 import com.telerikacademy.oop.wim.models.ValidationHelper;
+import com.telerikacademy.oop.wim.models.contracts.BoardMember;
+import com.telerikacademy.oop.wim.models.contracts.Team;
 
 import java.util.List;
 import java.util.Scanner;

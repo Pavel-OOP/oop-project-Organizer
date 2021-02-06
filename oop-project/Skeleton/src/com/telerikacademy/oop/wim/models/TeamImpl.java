@@ -1,10 +1,6 @@
 package com.telerikacademy.oop.wim.models;
 
 import com.telerikacademy.oop.wim.commands.Messages.ErrorMessages;
-import com.telerikacademy.oop.wim.core.WIMRepositoryImpl;
-import com.telerikacademy.oop.wim.models.contracts.Board;
-import com.telerikacademy.oop.wim.models.contracts.Feedback;
-import com.telerikacademy.oop.wim.models.contracts.Member;
 import com.telerikacademy.oop.wim.models.contracts.Team;
 
 import java.time.LocalDateTime;

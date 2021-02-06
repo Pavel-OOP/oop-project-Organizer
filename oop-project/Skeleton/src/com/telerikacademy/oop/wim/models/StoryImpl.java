@@ -1,7 +1,7 @@
 package com.telerikacademy.oop.wim.models;
 
 import com.telerikacademy.oop.wim.commands.Messages.ErrorMessages;
-import com.telerikacademy.oop.wim.models.contracts.Assignable;
+import com.telerikacademy.oop.wim.models.contracts.Assignee;
 import com.telerikacademy.oop.wim.models.contracts.BugStoryPriority;
 import com.telerikacademy.oop.wim.models.contracts.CommentsInterface;
 import com.telerikacademy.oop.wim.models.contracts.Story;
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StoryImpl extends Assignee implements Story, CommentsInterface, BugStoryPriority, Assignable {
+public class StoryImpl extends AssigneeImpl implements Story, CommentsInterface, BugStoryPriority, Assignee {
 
     private Size size;
     private StoryStatus storyStatus;
@@ -67,7 +67,7 @@ public class StoryImpl extends Assignee implements Story, CommentsInterface, Bug
 
     public String additionalInfo(){
         return String.format(
-                "%s [Size: %s] [Status: %s] [Priority: %s] [Assignee: %s]%n" +
+                "%s [Size: %s] [Status: %s] [Priority: %s] [AssigneeImpl: %s]%n" +
                         "Description: %n%s%n" +
                         "%s",
                 super.toString(),

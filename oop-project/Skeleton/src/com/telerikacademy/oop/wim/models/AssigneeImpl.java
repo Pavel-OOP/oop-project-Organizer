@@ -1,21 +1,19 @@
 package com.telerikacademy.oop.wim.models;
 
 import com.telerikacademy.oop.wim.commands.Messages.ErrorMessages;
-import com.telerikacademy.oop.wim.models.contracts.Assignable;
 import com.telerikacademy.oop.wim.models.contracts.BugStoryPriority;
 import com.telerikacademy.oop.wim.models.contracts.WorkItems;
-import com.telerikacademy.oop.wim.models.enums.FeedbackStatus;
 import com.telerikacademy.oop.wim.models.enums.Priority;
 
 import java.time.LocalDateTime;
 
-public abstract class Assignee extends WorkItemsImpl implements Assignable, BugStoryPriority, WorkItems {
+public abstract class AssigneeImpl extends WorkItemsImpl implements com.telerikacademy.oop.wim.models.contracts.Assignee, BugStoryPriority, WorkItems {
 
     private String assignee;
     private Priority priority;
     private String pass = "AlongPassWordWithMultiple#4!2#F)E#)M#W)FICPI#)";
 
-    public Assignee(String title, String description, String assignee, Priority priority) {
+    public AssigneeImpl(String title, String description, String assignee, Priority priority) {
         super(title, description);
         this.assignee = assignee;
         setPriority(priority, pass);

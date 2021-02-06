@@ -14,8 +14,6 @@ public class Startup {
         WIMEngineImpl engine = new WIMEngineImpl();
         engine.start();
 
-
-
     }
 }
 

@@ -31,5 +31,4 @@ abstract class BoardMemberBaseImpl implements BoardMember {
         this.name = name;
     }
 
-    protected abstract void activityHistory();
 }

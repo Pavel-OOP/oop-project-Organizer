@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BugImpl extends Assignee implements Bug, CommentsInterface, BugStoryPriority {
+public class BugImpl extends AssigneeImpl implements Bug, CommentsInterface, BugStoryPriority {
 
     private List<String> stepsToReproduce;
     private Severity severity;
@@ -84,7 +84,7 @@ public class BugImpl extends Assignee implements Bug, CommentsInterface, BugStor
 
     public String additionalInfo() {
         return String.format(
-                "%s [Severity: %s] [Status: %s] [Priority: %s] [Assignee: %s]%n" +
+                "%s [Severity: %s] [Status: %s] [Priority: %s] [AssigneeImpl: %s]%n" +
                         "Description: %n%s%n" +
                         "Steps to reproduce: %n%s%n" +
                         "%s",
