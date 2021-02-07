@@ -163,7 +163,7 @@ public class BoardImpl extends BoardMemberBaseImpl implements Board {
         return new ArrayList<>(workItemsList);
     }
 
-    public List<AssigneeImpl> getAllAssignablesInOneAssigneeList(){
+    public List<AssigneeImpl> getAllAssigneesInOneAssigneeList(){
         List<AssigneeImpl> assignees = new ArrayList<>();
         assignees.addAll(getAllStories());
         assignees.addAll(getAllBugs());

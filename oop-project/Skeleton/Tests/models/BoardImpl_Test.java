@@ -88,7 +88,7 @@ public class BoardImpl_Test {
         boardTest.addStory(storyTest);
         boardTest.addFeedback(feedbackTest);
 
-        Assertions.assertEquals(boardTest, 3);
+        Assertions.assertEquals(boardTest.getAllWorkItemsInOneList().size(), 3);
     }
 
 }
