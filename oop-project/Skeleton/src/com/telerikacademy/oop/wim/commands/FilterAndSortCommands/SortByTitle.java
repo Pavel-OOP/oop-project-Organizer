@@ -66,7 +66,7 @@ public class SortByTitle implements Command {
 
     private String FilterWorkItemsFromBoard(String teamName, String boardName) {
         StringBuilder stringBuilder = new StringBuilder();
-        wimRepository.getTeams().get(teamName).getAllBoards().get(boardName).getAllAssigneesInOneAssigneeList()
+        wimRepository.getTeams().get(teamName).getAllBoards().get(boardName).getAllWorkItemsWithAssignees()
                 .stream()
                 .sorted(Comparator.comparing(WorkItemsImpl::getTitle))
                 .forEach(workItem -> stringBuilder.append(workItem.additionalInfo()).append(System.lineSeparator()));
@@ -79,7 +79,7 @@ public class SortByTitle implements Command {
     private String FilterWorkItemsFromTeam(String teamName) {
         StringBuilder stringBuilder = new StringBuilder();
         wimRepository.getTeams().get(teamName).getAllBoards()
-                .forEach((s, board) -> board.getAllAssigneesInOneAssigneeList()
+                .forEach((s, board) -> board.getAllWorkItemsWithAssignees()
                         .stream()
                         .sorted(Comparator.comparing(WorkItemsImpl::getTitle))
                         .forEach(workItem -> stringBuilder.append(workItem.additionalInfo()).append(System.lineSeparator())));

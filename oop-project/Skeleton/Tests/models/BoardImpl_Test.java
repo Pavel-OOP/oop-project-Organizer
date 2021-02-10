@@ -1,13 +1,10 @@
 package models;
 
 import com.telerikacademy.oop.wim.models.*;
-import com.telerikacademy.oop.wim.models.contracts.*;
 import com.telerikacademy.oop.wim.models.enums.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 
 public class BoardImpl_Test {
@@ -62,6 +59,8 @@ public class BoardImpl_Test {
 
         boardTest.addBug(bugTest);
         Assertions.assertEquals(boardTest.getBug("bugTitle"), bugTest);
+        //check if returns null with invalid name
+        Assertions.assertNull(boardTest.getBug("WrongTitle"));
     }
 
     @Test
@@ -70,6 +69,8 @@ public class BoardImpl_Test {
 
         boardTest.addStory(storyTest);
         Assertions.assertEquals(boardTest.getStory("storyTitle"), storyTest);
+        //check if returns null with invalid name
+        Assertions.assertNull(boardTest.getStory("WrongTitle"));
     }
 
     @Test
@@ -78,6 +79,8 @@ public class BoardImpl_Test {
 
         boardTest.addFeedback(feedbackTest);
         Assertions.assertEquals(boardTest.getFeedback("feedbackTitle"), feedbackTest);
+        //check if returns null with invalid name
+        Assertions.assertNull(boardTest.getFeedback("WrongTitle"));
     }
 
     @Test
@@ -88,7 +91,13 @@ public class BoardImpl_Test {
         boardTest.addStory(storyTest);
         boardTest.addFeedback(feedbackTest);
 
+        //All work items
         Assertions.assertEquals(boardTest.getAllWorkItemsInOneList().size(), 3);
+
+        //All work items with assignees
+        Assertions.assertEquals(boardTest.getAllWorkItemsWithAssignees().size(), 2);
     }
+
+
 
 }

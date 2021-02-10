@@ -78,7 +78,7 @@ public class SortByPriority implements Command {
     private String FilterAssigneesFromBoard(String teamName, String boardName, String upOrDown) {
         StringBuilder stringBuilder = new StringBuilder();
         List<AssigneeImpl> assigneesSorted = new ArrayList<>();
-        wimRepository.getTeams().get(teamName).getAllBoards().get(boardName).getAllAssigneesInOneAssigneeList()
+        wimRepository.getTeams().get(teamName).getAllBoards().get(boardName).getAllWorkItemsWithAssignees()
                 .stream()
                 .sorted(Comparator.comparing(AssigneeImpl::getPriority))
                 .forEach(assigneesSorted::add);
@@ -103,7 +103,7 @@ public class SortByPriority implements Command {
         List<AssigneeImpl> assigneesSortedByBoards = new ArrayList<>();
         List<AssigneeImpl> assigneesSortedAll = new ArrayList<>();
         wimRepository.getTeams().get(teamName).getAllBoards()
-                .forEach((s, board) -> board.getAllAssigneesInOneAssigneeList()
+                .forEach((s, board) -> board.getAllWorkItemsWithAssignees()
                         .stream()
                         .sorted(Comparator.comparing(AssigneeImpl::getPriority))
                         .forEach(assigneesSortedByBoards::add));
