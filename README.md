@@ -17,7 +17,7 @@ enter the site<br/>
 click on the first video<br/>
 click play<br/>
 finish<br/>
-(you will be asked for priority, severity, status and assignee for the bug. Priority:HIGH, MEDIUM, LOW || Severity:CRITICAL, MAJOR, MINOR || Status: ACTIVE, FIXED)
+(you will be asked for priority, severity, status and assignee for the bug. Priority:HIGH, MEDIUM, LOW || Severity:CRITICAL, MAJOR, MINOR || Status: ACTIVE, FIXED)<br/>
 high critical active Monika<br/>
 createstory TeamRocket board1 fix_the_crashing_video<br/>
 (story is like a task that must be assigned to someone. You will be asked for description. Example below)<br/>
