@@ -46,9 +46,9 @@ There was a bug issued to Monika and after an hour the bug still persists, waiti
 addcommenttobug TeamRocket board1 video_player_crashing<br/>
 <br/>
 (you will be asked for a comment)<br/>
-It has been 2 hours now I still get the bug! What a stupid site, I'm unsubscribing!<br/>
+It has been 2 hours now and I still get the bug! What a stupid site, I'm unsubscribing!<br/>
 <br/>
-(now you will be asked for the name of the author if this comment, it can be whatever pseoudonim the user wants)<br/>
+(now you will be asked for the name of the author of this comment, it can be whatever pseudonym the user wants)<br/>
 ImpatientUser<br/>
 
 
