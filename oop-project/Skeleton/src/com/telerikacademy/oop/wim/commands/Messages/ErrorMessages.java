@@ -36,6 +36,8 @@ public class ErrorMessages {
             "Description must be between %d and %d symbols.";
     public static final String BELOW_ZERO =
             "%s cannot be less or equal to zero.";
+    public static final String ABOVE_TEN =
+            "%s cannot be more than ten.";
     public static final String EMPTY_COMMAND =
             "Command cannot be null or empty.";
     public static final String NO_TEAMS_TO_LIST =
@@ -92,5 +94,5 @@ public class ErrorMessages {
     public static final String INCORRECT_FEEDBACKSTATUS_ENUM =
             "Incorrect status for feedback entered. Correct statuses for feedback are NEW, UNSCHEDULED, SCHEDULED and DONE";
     public static final String INCORRECT_PASS_NOT_ALLOWED =
-            "You are not allowed to change from calling this method. Please use the command.";
+            "You are not allowed to call this method. Please use the 'get' command.";
 }

@@ -41,9 +41,12 @@ public class ValidationHelper {
     }
 
 
-    public static void isBelowZero(String whatWeMeasure, double input) {
-        if (input <= 0.00) {
-            throw new IllegalArgumentException(String.format(ErrorMessages.BELOW_ZERO, whatWeMeasure));
+    public static void isBelowZeroOrAboveTen(int input) {
+        if (input < 0) {
+            throw new IllegalArgumentException(String.format(ErrorMessages.BELOW_ZERO, "Size"));
+        }
+        if (input > 10) {
+            throw new IllegalArgumentException(String.format(ErrorMessages.ABOVE_TEN, "Size"));
         }
     }
 

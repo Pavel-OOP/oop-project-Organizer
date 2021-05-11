@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class AddCommentToStory implements Command {
-    private static final int CORRECT_NUMBER_OF_ARGUMENTS = 5;
+    private static final int CORRECT_NUMBER_OF_ARGUMENTS = 3;
     private final Map<String, TeamImpl> teams;
     private Scanner user_input = new Scanner(System.in);
 

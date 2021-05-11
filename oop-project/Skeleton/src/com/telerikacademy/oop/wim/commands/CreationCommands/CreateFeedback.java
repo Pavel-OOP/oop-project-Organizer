@@ -38,6 +38,7 @@ public class CreateFeedback implements Command {
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("Rating must be an Integer!");
         }
+        ValidationHelper.isBelowZeroOrAboveTen(rating);
         ValidationHelper.checkFeedbackEnums(parameters.get(5));
         FeedbackStatus status = FeedbackStatus.valueOf(parameters.get(5).toUpperCase());
         return createFeedback(teamName, boardName, title, description, rating, status);
