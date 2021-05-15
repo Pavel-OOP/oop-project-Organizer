@@ -8,17 +8,17 @@ import com.telerikacademy.oop.wim.models.enums.Severity;
 
 import java.util.*;
 
-public class ValidationHelper {
+public class ValidationHelper extends Exception {
     private ValidationHelper() {
     }
 
-    public static void checkNull(String model, String input){
+    public static void checkNull(String model, String input) throws NullPointerException{
         if(input == null){
             throw new NullPointerException(String.format(ErrorMessages.CANNOT_BE_NULL, model));
         }
     }
 
-    public static void checkNameLength(String input) {
+    public static void checkNameLength(String input) throws IllegalArgumentException{
         if (input.length() < GlobalConstants.NAME_MIN_LENGTH || input.length() > GlobalConstants.NAME_MAX_LENGTH) {
             throw new IllegalArgumentException
                     (String.format(ErrorMessages.NAME_LENGTH,
@@ -26,14 +26,14 @@ public class ValidationHelper {
         }
     }
 
-    public static void checkTitleLength(String input) {
-        if (input.length() < GlobalConstants.NAME_MIN_LENGTH || input.length() > GlobalConstants.TITTLE_MAX_LENGTH) {
+    public static void checkTitleLength(String input) throws IllegalArgumentException{
+        if (input.length() < GlobalConstants.TITTLE_MIN_LENGTH || input.length() > GlobalConstants.TITTLE_MAX_LENGTH) {
             throw new IllegalArgumentException(String.format(ErrorMessages.TITTLE_LENGTH,
                     GlobalConstants.TITTLE_MIN_LENGTH, GlobalConstants.TITTLE_MAX_LENGTH));
         }
     }
 
-    public static void checkDescriptionLength(String input) {
+    public static void checkDescriptionLength(String input) throws IllegalArgumentException{
         if (input.length() < GlobalConstants.DESCRIPTION_MIN_LENGTH || input.length() > GlobalConstants.DESCRIPTION_MAX_LENGTH) {
             throw new IllegalArgumentException(String.format(ErrorMessages.DESCRIPTION_LENGTH,
                     GlobalConstants.DESCRIPTION_MIN_LENGTH, GlobalConstants.DESCRIPTION_MAX_LENGTH));
@@ -41,7 +41,7 @@ public class ValidationHelper {
     }
 
 
-    public static void isBelowZeroOrAboveTen(int input) {
+    public static void isBelowZeroOrAboveTen(int input) throws  IllegalArgumentException{
         if (input < 0) {
             throw new IllegalArgumentException(String.format(ErrorMessages.BELOW_ZERO, "Size"));
         }
@@ -50,7 +50,7 @@ public class ValidationHelper {
         }
     }
 
-    public static void checkRatingConstraints(int input) {
+    public static void checkRatingConstraints(int input) throws IllegalArgumentException {
         if (input < GlobalConstants.FEEDBACK_RATING_MIN_VALUE || input > GlobalConstants.FEEDBACK_RATING_MAX_VALUE) {
             throw new IllegalArgumentException
                     (String.format(ErrorMessages.INVALID_FEEDBACK_RATING,
@@ -59,7 +59,7 @@ public class ValidationHelper {
         }
     }
 
-    public static void checkExistenceTeam(String teamName, Map<String, TeamImpl> teams) {
+    public static void checkExistenceTeam(String teamName, Map<String, TeamImpl> teams) throws IllegalArgumentException{
         if (teams.isEmpty()) {
             throw new IllegalArgumentException(ErrorMessages.NO_TEAMS_TO_LIST);
         } else if (!teams.containsKey(teamName)) {
@@ -67,7 +67,7 @@ public class ValidationHelper {
         }
     }
 
-    public static void checkExistenceBoard(String teamName, String boardName, Map<String, TeamImpl> teams) {
+    public static void checkExistenceBoard(String teamName, String boardName, Map<String, TeamImpl> teams) throws IllegalArgumentException{
         if (teams.get(teamName).getAllBoards().isEmpty()) {
             throw new IllegalArgumentException(ErrorMessages.NO_BOARDS_TO_LIST);
         } else if (!teams.get(teamName).getAllBoards().containsKey(boardName)) {
@@ -75,7 +75,7 @@ public class ValidationHelper {
         }
     }
 
-    public static void checkExistenceMember(String memberName, Map<String, MemberImpl> members){
+    public static void checkExistenceMember(String memberName, Map<String, MemberImpl> members) throws IllegalArgumentException{
         if (members.isEmpty()) {
             throw new IllegalArgumentException(ErrorMessages.NO_MEMBERS_TO_SHOW);
         } else if (!members.containsKey(memberName)){
@@ -83,7 +83,7 @@ public class ValidationHelper {
         }
     }
 
-    public static void checkExistenceTeamAndBoard(String teamName, String boardName, Map<String, TeamImpl> teams){
+    public static void checkExistenceTeamAndBoard(String teamName, String boardName, Map<String, TeamImpl> teams)throws IllegalArgumentException{
         if (teams.isEmpty()) {
             throw new IllegalArgumentException(ErrorMessages.NO_TEAMS_TO_LIST);
         } else if (!teams.containsKey(teamName)) {
@@ -95,7 +95,7 @@ public class ValidationHelper {
         }
     }
 
-    public static void checkExistenceWorkItemInBoard(String teamName,String boardName,String workItemName, Map<String, TeamImpl> teams, String type){
+    public static void checkExistenceWorkItemInBoard(String teamName,String boardName,String workItemName, Map<String, TeamImpl> teams, String type)throws IllegalArgumentException{
         if (type.equalsIgnoreCase("bug")){
             if (teams.get(teamName).getAllBoards().get(boardName).getAllBugs().isEmpty()) {
                 throw new IllegalArgumentException(ErrorMessages.NO_BUGS_FOUND);
@@ -129,7 +129,7 @@ public class ValidationHelper {
         }
     }
 
-    public static void checkBugEnums(String priority, String severity, String status){
+    public static void checkBugEnums(String priority, String severity, String status) throws IllegalArgumentException{
         List<String> priorities = new ArrayList<>();
         priorities.add("HIGH"); priorities.add("MEDIUM"); priorities.add("LOW");
         List<String> severities = new ArrayList<>();
@@ -145,7 +145,7 @@ public class ValidationHelper {
         }
     }
 
-    public static void checkStoryEnums(String priority, String size, String status){
+    public static void checkStoryEnums(String priority, String size, String status) throws IllegalArgumentException{
         List<String> priorities = new ArrayList<>();
         priorities.add("HIGH"); priorities.add("MEDIUM"); priorities.add("LOW");
         List<String> sizes = new ArrayList<>();
@@ -161,7 +161,7 @@ public class ValidationHelper {
         }
     }
 
-    public static void checkFeedbackEnums(String status) {
+    public static void checkFeedbackEnums(String status) throws IllegalArgumentException {
         List<String> feedbackStatuses = new ArrayList<>();
         feedbackStatuses.add("NEW");feedbackStatuses.add("UNSCHEDULED");
         feedbackStatuses.add("SCHEDULED");feedbackStatuses.add("DONE");
@@ -170,7 +170,7 @@ public class ValidationHelper {
         }
     }
 
-    public static void checkWorkItemDuplicationInBoard(String teamName, String boardName, String workItemName, Map<String, TeamImpl> teams, String type){
+    public static void checkWorkItemDuplicationInBoard(String teamName, String boardName, String workItemName, Map<String, TeamImpl> teams, String type) throws IllegalArgumentException{
         if (type.equalsIgnoreCase("bug")){
             teams.get(teamName).getAllBoards().get(boardName).getAllBugs()
                     .forEach(bug -> {
@@ -194,4 +194,5 @@ public class ValidationHelper {
                     });
         }
     }
+
 }

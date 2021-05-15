@@ -94,5 +94,5 @@ public class ErrorMessages {
     public static final String INCORRECT_FEEDBACKSTATUS_ENUM =
             "Incorrect status for feedback entered. Correct statuses for feedback are NEW, UNSCHEDULED, SCHEDULED and DONE";
     public static final String INCORRECT_PASS_NOT_ALLOWED =
-            "You are not allowed to call this method. Please use the 'get' command.";
+            "You are not allowed to call this method. Please use the 'getter'.";
 }
